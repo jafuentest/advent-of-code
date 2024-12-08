@@ -38,9 +38,7 @@ lines.each_with_index do |line, i|
       gear_numbers << number if (s_start..s_end).include?(j)
     end
 
-    if gear_numbers.size > 1
-      valid_numbers.push gear_numbers.map(&:to_i).inject(:*)
-    end
+    valid_numbers.push gear_numbers.map(&:to_i).inject(:*) if gear_numbers.size > 1
   end
 end
 
