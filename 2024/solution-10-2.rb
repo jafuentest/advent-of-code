@@ -1,7 +1,6 @@
 grid = File.read('input-10.txt')
   .split("\n")
-  .map(&:chars)
-  .map { |e| e.map(&:to_i) }
+  .map { |e| e.chars.map(&:to_i) }
 
 starts = []
 grid.each_with_index do |row, i|
@@ -10,7 +9,7 @@ grid.each_with_index do |row, i|
   end
 end
 
-STEPS = [[-1, 0], [0, 1], [1, 0], [0, -1]].freeze
+STEPS = [[0, -1], [-1, 0], [0, 1], [1, 0]].freeze
 
 def trails_length_from(grid, i, j)
   next_steps = STEPS.map { |x, y| [i + x, j + y] }
