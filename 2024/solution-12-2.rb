@@ -32,8 +32,6 @@ bfs = lambda do |i0, j0, char|
   end
 
   sides = 0
-  puts
-  puts perimeters
   perimeters.each_value do |v|
     seen_perimeters = Set.new
     v.each do |pi, pj|
