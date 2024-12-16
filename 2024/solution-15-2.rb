@@ -3,13 +3,14 @@ $grid = []
 input[0].split("\n").each do |row|
   grid_row = []
   row.chars.each do |char|
-    if char == '.'
+    case char
+    when '.'
       grid_row << '.'
       grid_row << '.'
-    elsif char == 'O'
+    when 'O'
       grid_row << '['
       grid_row << ']'
-    elsif char == '#'
+    when '#'
       grid_row << '#'
       grid_row << '#'
     else
@@ -45,13 +46,14 @@ def pushed_boxes?(i, j, vi, vj)
     ni = i + vi
     nj = j + vj
 
-    if $grid[ni][nj] == '#'
+    case $grid[ni][nj]
+    when '#'
       pushed_boxes = false
       break
-    elsif $grid[ni][nj] == '['
+    when '['
       queue << [ni, nj]
       queue << [ni, nj + 1]
-    elsif $grid[ni][nj] == ']'
+    when ']'
       queue << [ni, nj]
       queue << [ni, nj - 1]
     end
