@@ -1,7 +1,5 @@
-file = File.open('input-06.txt')
-race_time = file.readline.split(':').last.split.reduce(&:+).to_i
-distance = file.readline.split(':').last.split.reduce(&:+).to_i
-file.close
+race_time, distance = File.read('input-06.txt').lines
+  .map { |e| e.split(':').last.split.inject(:+).to_i }
 
 count = 0
 race_time.times do |t|
