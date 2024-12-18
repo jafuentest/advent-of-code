@@ -48,6 +48,8 @@ loop do
   end
 
   visited.add [i, j]
+  i0 = i
+  j0 = j
   i += directions[dir][0]
   j += directions[dir][1]
 

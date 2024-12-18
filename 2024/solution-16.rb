@@ -52,3 +52,44 @@ until p_queue.empty?
 end
 
 puts best
+
+p_queue = Containers::PriorityQueue.new
+seen = Set.new
+
+4.times { |dir1| p_queue.push([0, it, jt, dir1], 0) }
+distances2 = {}
+
+until p_queue.empty?
+  d, i, j, dir = p_queue.pop
+
+  distances2[[i, j, dir]] = d unless distances2.key?([i, j, dir])
+
+  next if seen.include?([i, j, dir])
+
+  seen.add([i, j, dir])
+
+  di, dj = DIRECTIONS[(dir + 2) % 4]
+  i1 = i + di
+  j1 = j + dj
+
+  if i1 >= 0 && i1 < m && j1 >= 0 && j1 < n && grid[i1][j1] != '#'
+    p_queue.push([d + 1, i1, j1, dir], (-1 - d))
+  end
+
+  p_queue.push([d + 1000, i, j, (dir + 1) % 4], (-1000 - d))
+  p_queue.push([d + 1000, i, j, (dir + 3) % 4], (-1000 - d))
+end
+
+walked = Set.new
+
+grid.each_with_index do |row, ii|
+  row.each_index do |jj|
+    4.times do |dir1|
+      next unless distances.key?([ii, jj, dir1]) && distances2.key?([ii, jj, dir1])
+
+      walked.add([ii, jj]) if distances[[ii, jj, dir1]] + distances2[[ii, jj, dir1]] == best
+    end
+  end
+end
+
+puts walked.size

@@ -72,8 +72,6 @@ input[1].split("\n").each do |moves_line|
   end
 end
 
-puts $grid.map(&:join).join("\n")
-
 total = 0
 $grid.each_with_index do |row, ii|
   row.each_with_index do |cell, jj|

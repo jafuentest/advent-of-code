@@ -104,5 +104,4 @@ $grid.each_with_index do |row, ii|
   end
 end
 
-puts $grid.map(&:join).join("\n")
 puts total

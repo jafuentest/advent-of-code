@@ -25,4 +25,5 @@ def process(n, t)
   $cache[n][t] = val
 end
 
+puts list.map { |n| process(n, 25) }.sum
 puts list.map { |n| process(n, 75) }.sum
