@@ -1,6 +1,5 @@
 input = File.read('input-15.txt').split("\n\n")
 $grid = input[0].split("\n").map(&:chars)
-$cache = {}
 
 DIRECTIONS = {
   '>' => [0, 1],
