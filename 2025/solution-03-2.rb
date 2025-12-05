@@ -13,7 +13,7 @@ File.foreach("input-03.txt") do |line|
 
     max = sub_array.max
     idx += sub_array.index(max) + 1
-    power = 10 ** (digits - 1)
+    power = 10**(digits - 1)
     digits -= 1
 
     sub_total += max * power

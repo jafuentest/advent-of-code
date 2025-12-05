@@ -1,4 +1,4 @@
-grid = File.read('input-04.txt')
+grid = File.read("input-04.txt")
   .split("\n")
   .map(&:chars)
 
@@ -11,7 +11,8 @@ end
 c = 0
 grid.each_with_index do |row, i|
   row.each_with_index do |char, j|
-    next unless char == '@'
+    next unless char == "@"
+
     coords = [
       [i - 1, j - 1], [i - 1, j], [i - 1, j + 1],
       [i, j - 1], [i, j + 1],
@@ -19,7 +20,7 @@ grid.each_with_index do |row, i|
     ]
     if coords.count { |x, y| has_roll?(grid, x, y) } < 4
       c += 1
-      grid[i][j] = 'X' if c
+      grid[i][j] = "X" if c
     end
   end
 end

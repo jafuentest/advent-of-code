@@ -6,7 +6,7 @@ File.foreach("input-03.txt") do |line|
   idx = nums.index(max) + 1
   second_max = nums[idx..].max
 
-  total += max * 10 + second_max
+  total += (max * 10) + second_max
 end
 
 puts "The total output joltage is: #{total}"

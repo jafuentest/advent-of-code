@@ -1,4 +1,4 @@
-grid = File.read('input-04.txt')
+grid = File.read("input-04.txt")
   .split("\n")
   .map(&:chars)
 
@@ -14,7 +14,7 @@ updated_coords = Set.new
 
 grid.each_with_index do |row, i|
   row.each_with_index do |char, j|
-    updated_coords.add([i, j]) if char == '@'
+    updated_coords.add([i, j]) if char == "@"
   end
 end
 
@@ -33,15 +33,16 @@ loop do
       [i + 1, j - 1], [i + 1, j], [i + 1, j + 1]
     ].select { |x, y| has_roll?(grid, x, y) }
 
-    if adjacent_rolls.size < 4
-      updated_coords.merge(adjacent_rolls)
-      new_grid[i][j] = "x"
-      grid[i][j] = "o"
-      c += 1
-    end
+    next unless adjacent_rolls.size < 4
+
+    updated_coords.merge(adjacent_rolls)
+    new_grid[i][j] = "x"
+    grid[i][j] = "o"
+    c += 1
   end
 
   break if updated_coords.empty?
+
   grid = new_grid
 end
 
