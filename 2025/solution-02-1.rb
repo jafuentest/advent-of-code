@@ -1,12 +1,11 @@
 ranges = File.read("input-02.txt").split(",")
 
 def dup?(num)
-  digits = num.to_s.chars
-  return false if digits.length.odd?
+  digits = num.digits
+  l = digits.length
+  return false if l.odd?
 
-  first_half = digits[0..((digits.length / 2) - 1)]
-  second_half = digits[(digits.length / 2)..]
-  first_half == second_half
+  digits[0..((l / 2) - 1)] == digits[(l / 2)..]
 end
 
 sum = 0
