@@ -1,4 +1,4 @@
-grid = File.read('input-10.txt')
+grid = File.read("input-10.txt")
   .split("\n")
   .map { |e| e.chars.map(&:to_i) }
 

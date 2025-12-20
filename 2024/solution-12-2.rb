@@ -1,4 +1,4 @@
-grid = File.read('input-12.txt')
+grid = File.read("input-12.txt")
   .split("\n")
   .map(&:chars)
 

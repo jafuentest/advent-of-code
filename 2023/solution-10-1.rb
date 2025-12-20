@@ -1,10 +1,10 @@
-grid = File.read('input-10.txt')
+grid = File.read("input-10.txt")
   .split("\n")
   .map(&:chars)
 
 def find_s(grid)
   grid.each_with_index do |row, i|
-    row.each_with_index { |char, j| return [i, j] if char == 'S' }
+    row.each_with_index { |char, j| return [i, j] if char == "S" }
   end
 end
 
@@ -22,7 +22,7 @@ def next_section?(grid, i1, j1, i2, j2)
   char2 = grid[i2][j2]
   d = [i2 - i1, j2 - j1]
 
-  return false if char2 == '.' || char2.is_a?(Integer)
+  return false if char2 == "." || char2.is_a?(Integer)
 
   (d == [0, 1]  && %w[- L F S].include?(char1) && %w[- J 7].include?(char2)) ||
   (d == [0, -1] && %w[- J 7 S].include?(char1) && %w[- L F].include?(char2)) ||

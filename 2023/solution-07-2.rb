@@ -1,5 +1,5 @@
 hands = {}
-File.foreach('input-07.txt') do |line|
+File.foreach("input-07.txt") do |line|
   hand, bid = line.split
   hands[hand] = bid.to_i
 end
@@ -10,8 +10,8 @@ def compare_cards(a, b)
 end
 
 def compare_tallys(hand_a, hand_b)
-  same_kind_a = (hand_a.except('J').values.max || 0) + hand_a.fetch('J', 0)
-  same_kind_b = (hand_b.except('J').values.max || 0) + hand_b.fetch('J', 0)
+  same_kind_a = (hand_a.except("J").values.max || 0) + hand_a.fetch("J", 0)
+  same_kind_b = (hand_b.except("J").values.max || 0) + hand_b.fetch("J", 0)
 
   return same_kind_a - same_kind_b unless same_kind_a == same_kind_b
   return 0 if same_kind_a == 1

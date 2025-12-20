@@ -1,8 +1,8 @@
 points = []
-lines = File.read('input-04.txt').split("\n")
+lines = File.read("input-04.txt").split("\n")
 
 lines.each do |line|
-  split_line = line.split('|')
+  split_line = line.split("|")
   winning_numbers = split_line.first.scan(/\d+/)[1..]
   owned_numbers = split_line.last.scan(/\d+/)
 

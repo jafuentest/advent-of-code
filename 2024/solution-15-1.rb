@@ -1,17 +1,17 @@
-input = File.read('input-15.txt').split("\n\n")
+input = File.read("input-15.txt").split("\n\n")
 $grid = input[0].split("\n").map(&:chars)
 
 DIRECTIONS = {
-  '>' => [0, 1],
-  'v' => [1, 0],
-  '<' => [0, -1],
-  '^' => [-1, 0]
+  ">" => [0, 1],
+  "v" => [1, 0],
+  "<" => [0, -1],
+  "^" => [-1, 0]
 }.freeze
 
-pos = [$grid.find_index { |e| e.include? '@' }]
-pos << $grid[pos[0]].find_index { |e| e.include? '@' }
+pos = [$grid.find_index { |e| e.include? "@" }]
+pos << $grid[pos[0]].find_index { |e| e.include? "@" }
 i, j = pos
-$grid[i][j] = '.'
+$grid[i][j] = "."
 
 def steps_in_front(i, j, vi, vj)
   if vi == 0
@@ -25,26 +25,26 @@ end
 
 def pushed_boxes?(i, j, vi, vj)
   in_front = steps_in_front(i, j, vi, vj)
-  return false unless in_front.include?('.')
+  return false unless in_front.include?(".")
 
-  next_space = in_front.find_index('.')
+  next_space = in_front.find_index(".")
   return false if next_space.nil?
 
-  next_wall = in_front.find_index('#')
+  next_wall = in_front.find_index("#")
   return false if next_wall < next_space
 
-  $grid[i][j] = '.'
+  $grid[i][j] = "."
 
   if vi == 0
     if vj > 0
-      $grid[i][j + next_space] = 'O'
+      $grid[i][j + next_space] = "O"
     else
-      $grid[i][j - next_space] = 'O'
+      $grid[i][j - next_space] = "O"
     end
   elsif vi > 0
-    $grid[i + next_space][j] = 'O'
+    $grid[i + next_space][j] = "O"
   else
-    $grid[i - next_space][j] = 'O'
+    $grid[i - next_space][j] = "O"
   end
 
   true
@@ -56,9 +56,9 @@ input[1].split("\n").each do |moves_line|
     ni = i + vi
     nj = j + vj
 
-    next if $grid[ni][nj] == '#'
+    next if $grid[ni][nj] == "#"
 
-    if $grid[ni][nj] == '.'
+    if $grid[ni][nj] == "."
       i = ni
       j = nj
       next
@@ -74,7 +74,7 @@ end
 total = 0
 $grid.each_with_index do |row, ii|
   row.each_with_index do |cell, jj|
-    total += (ii * 100) + jj if cell == 'O'
+    total += (ii * 100) + jj if cell == "O"
   end
 end
 puts total

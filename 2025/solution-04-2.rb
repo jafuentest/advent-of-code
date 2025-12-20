@@ -2,7 +2,7 @@ grid = File.read("input-04.txt")
   .split("\n")
   .map(&:chars)
 
-def has_roll?(grid, i, j)
+def roll?(grid, i, j)
   return false unless i >= 0 && j >= 0 && i < grid.size && j < grid.first.size
 
   grid[i][j] == "@"
@@ -31,7 +31,7 @@ loop do
       [i - 1, j - 1], [i - 1, j], [i - 1, j + 1],
       [i, j - 1], [i, j + 1],
       [i + 1, j - 1], [i + 1, j], [i + 1, j + 1]
-    ].select { |x, y| has_roll?(grid, x, y) }
+    ].select { |x, y| roll?(grid, x, y) }
 
     next unless adjacent_rolls.size < 4
 

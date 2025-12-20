@@ -3,7 +3,7 @@ secs = 100
 rows = 103
 cols = 101
 
-File.foreach('input-14.txt') do |line|
+File.foreach("input-14.txt") do |line|
   match = line.match(/p=(-?\d+),(-?\d+) v=(-?\d+),(-?\d+)/)
   pj, pi, vj, vi = match[1..].map(&:to_i)
 

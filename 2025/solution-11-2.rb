@@ -8,7 +8,7 @@ File.read("input-11.txt")
     $map[from] = to.split
   end
 
-def paths_counts(key, dac = false, fft = false)
+def paths_counts(key, dac: false, fft: false)
   cache_key = [key, dac, fft].join
   return $paths_counts[cache_key] if $paths_counts.key?(cache_key)
 
@@ -20,7 +20,7 @@ def paths_counts(key, dac = false, fft = false)
   end
 
   $paths_counts[cache_key] = $map[key].sum do |k|
-    paths_counts(k, dac, fft)
+    paths_counts(k, dac:, fft:)
   end
 end
 

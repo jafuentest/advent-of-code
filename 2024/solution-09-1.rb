@@ -1,4 +1,4 @@
-data = File.read('input-09.txt').chars[..-2].map(&:to_i)
+data = File.read("input-09.txt").chars[..-2].map(&:to_i)
 total = 0
 idx = 0
 j = data.size - 1

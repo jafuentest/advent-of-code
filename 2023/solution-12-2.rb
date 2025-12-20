@@ -1,9 +1,9 @@
 result = 0
 
-File.foreach('input-12.txt') do |line|
+File.foreach("input-12.txt") do |line|
   first, second = line.split
   prefix = first.chars
-  suffix = second.split(',').map(&:to_i)
+  suffix = second.split(",").map(&:to_i)
 
   pattern = []
   springs = []
@@ -11,20 +11,20 @@ File.foreach('input-12.txt') do |line|
   # Unfold the records
   4.times do
     pattern += prefix
-    pattern << '?'
+    pattern << "?"
     springs += suffix
   end
 
   # Add trailing '.' so we don't check bounds for the last pattern.
   pattern += prefix
-  pattern << '.'
+  pattern << "."
   springs += suffix
 
   # Calculate prefix sum of broken springs and unknowns before each index.
   sum = 0
   broken = [0]
   pattern.each_with_index do |b, i|
-    sum += 1 if b != '.'
+    sum += 1 if b != "."
     broken[i + 1] = sum
   end
 
@@ -35,14 +35,14 @@ File.foreach('input-12.txt') do |line|
   valid = true
   wiggle = pattern.size - springs.sum - springs.size + 1
   wiggle.times do |i|
-    if pattern[i + first_size] == '#'
+    if pattern[i + first_size] == "#"
       sum = 0
     elsif valid && broken[i + first_size] - broken[i] == first_size
       sum += 1
     end
 
     table[i + first_size] = sum
-    valid &&= pattern[i] != '#'
+    valid &&= pattern[i] != "#"
   end
 
   # Count each subsequent spring.
@@ -53,10 +53,10 @@ File.foreach('input-12.txt') do |line|
     sum = 0
 
     (start...(start + wiggle)).each do |i|
-      if pattern[i + size] == '#'
+      if pattern[i + size] == "#"
         sum = 0
       elsif table[previous + i - 1] > 0 &&
-            pattern[i - 1] != '#' &&
+            pattern[i - 1] != "#" &&
             broken[i + size] - broken[i] == size
         sum += table[previous + i - 1]
       end

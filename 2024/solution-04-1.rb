@@ -1,5 +1,5 @@
 count = 0
-words = File.read('input-04.txt')
+words = File.read("input-04.txt")
   .split("\n")
   .map(&:chars)
 
@@ -16,7 +16,7 @@ words.size.times do |i|
         c = words[i + (y * 2)][j + (x * 2)]
         d = words[i + (y * 3)][j + (x * 3)]
 
-        count += 1 if a == 'X' && b == 'M' && c == 'A' && d == 'S'
+        count += 1 if a == "X" && b == "M" && c == "A" && d == "S"
       end
     end
   end

@@ -1,11 +1,11 @@
 data = {}
 k = 0
-File.foreach('input-05.txt') do |line|
+File.foreach("input-05.txt") do |line|
   next if line == "\n"
 
-  if line.start_with?('seeds')
-    data[k] = line.split(': ').last.split.map(&:to_i)
-  elsif line.include?(':')
+  if line.start_with?("seeds")
+    data[k] = line.split(": ").last.split.map(&:to_i)
+  elsif line.include?(":")
     k += 1
     data[k] = []
   else
@@ -13,7 +13,7 @@ File.foreach('input-05.txt') do |line|
   end
 end
 
-values = (0..data[0].size - 1).select(&:even?).map do |i|
+values = (0..(data[0].size - 1)).select(&:even?).map do |i|
   [data[0][i], data[0][i] + data[0][i + 1]]
 end
 

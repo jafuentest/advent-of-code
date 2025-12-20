@@ -5,7 +5,7 @@ def find_symmetry_point(arr)
     left = arr[0, i + 1].join.chars
     right = arr[i + 1, i + 1].reverse.join.chars
 
-    return i + 1 if left.zip(right).count { |e1, e2| e1 != e2 } == 1
+    return i + 1 if left.zip(right).one? { |e1, e2| e1 != e2 }
   end
 
   m.times do |i|
@@ -16,14 +16,14 @@ def find_symmetry_point(arr)
     left = arr[j..].join.chars
     right = arr[j2, i + 1].reverse.join.chars
 
-    return j if left.zip(right).count { |e1, e2| e1 != e2 } == 1
+    return j if left.zip(right).one? { |e1, e2| e1 != e2 }
   end
 
   0
 end
 
 t = 0
-File.read('input-13.txt').split("\n\n").each do |input|
+File.read("input-13.txt").split("\n\n").each do |input|
   rows = input.split("\n")
   cols = rows.first.size.times.map do |i|
     rows.map { |row| row[i] }.join

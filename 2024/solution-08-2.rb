@@ -1,9 +1,9 @@
 max = -1
 data = Hash.new { |h, k| h[k] = [] }
-File.foreach('input-08.txt') do |line|
+File.foreach("input-08.txt") do |line|
   max += 1
   line.chars.each_with_index do |char, j|
-    data[char] << [max, j] unless ['.', "\n"].include?(char)
+    data[char] << [max, j] unless [".", "\n"].include?(char)
   end
 end
 
@@ -23,7 +23,7 @@ data.each_value do |coords|
     loop do
       c = [a[0] - dx, a[1] - dy]
       a = c.dup
-      break unless c.all? { |e| e >= 0 && e <= max }
+      break unless c.all? { |e| e.between?(0, max) }
 
       points.add(c)
     end
@@ -34,7 +34,7 @@ data.each_value do |coords|
     loop do
       c = [b[0] + dx, b[1] + dy]
       b = c.dup
-      break unless c.all? { |e| e >= 0 && e <= max }
+      break unless c.all? { |e| e.between?(0, max) }
 
       points.add(c)
     end

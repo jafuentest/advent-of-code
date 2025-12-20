@@ -1,4 +1,4 @@
-grid = File.read('input-20.txt').split("\n").map(&:chars)
+grid = File.read("input-20.txt").split("\n").map(&:chars)
 
 MIN_SAVE = 100
 DIRECTIONS = [[-1, 0], [0, 1], [1, 0], [0, -1]].freeze
@@ -23,7 +23,7 @@ def dijkstra(grid, (i0, j0))
       j1 = j + dj
       next if i1 < 1 || i1 >= M || j1 < 1 || j1 >= N
 
-      if grid[i1][j1] == '#'
+      if grid[i1][j1] == "#"
         distances[i1][j1] = -1
       else
         distances[i1][j1] ||= distances[i][j] + 1
@@ -41,7 +41,7 @@ grid.each_with_index do |row, i|
   break unless start.nil?
 
   row.each_with_index do |cell, j|
-    if cell == 'S'
+    if cell == "S"
       start = [i, j]
       break
     end
@@ -55,7 +55,7 @@ path.sort_by { |i, j| distances[i][j] }.each do |i, j|
   path.delete [[i, j]]
 
   DIRECTIONS
-    .select { |di, dj| grid[i + di][j + dj] == '#' }
+    .select { |di, dj| grid[i + di][j + dj] == "#" }
     .map { |di, dj| [i + (2 * di), j + (2 * dj)] }
     .select { |jump| path.include?(jump) }
     .each do |ji, jj|

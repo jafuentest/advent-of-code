@@ -1,5 +1,5 @@
 hands = {}
-File.foreach('input-07.txt') do |line|
+File.foreach("input-07.txt") do |line|
   hand, bid = line.split
   hands[hand] = bid.to_i
 end

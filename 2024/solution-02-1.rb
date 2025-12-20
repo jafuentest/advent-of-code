@@ -11,7 +11,7 @@ end
 
 safe_count = 0
 
-File.foreach('input-02.txt') do |line|
+File.foreach("input-02.txt") do |line|
   safe_count += 1 if safe?(line.split.map(&:to_i))
 end
 

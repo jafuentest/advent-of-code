@@ -1,5 +1,5 @@
 total = 0
-File.foreach('input-09.txt') do |line|
+File.foreach("input-09.txt") do |line|
   seq = line.split.map(&:to_i)
   sequences = [seq]
   until seq.all?(&:zero?)

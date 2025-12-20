@@ -1,24 +1,24 @@
-grid = File.read('input-11.txt')
+grid = File.read("input-11.txt")
   .split("\n")
   .map(&:chars)
 
 (grid.first.size - 1).downto(0) do |i|
   col = grid.map { |row| row[i] }
-  next if col.include?('#')
+  next if col.include?("#")
 
-  grid.each { |row| row.insert(i, '.') }
+  grid.each { |row| row.insert(i, ".") }
 end
 
 (grid.size - 1).downto(0) do |i|
-  next if grid[i].include?('#')
+  next if grid[i].include?("#")
 
-  grid.insert(i, ['.' * grid[i].size])
+  grid.insert(i, ["." * grid[i].size])
 end
 
 stars = []
 grid.each_with_index do |row, i|
   row.each_with_index do |cell, j|
-    stars << [i, j] if cell == '#'
+    stars << [i, j] if cell == "#"
   end
 end
 

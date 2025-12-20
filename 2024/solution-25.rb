@@ -1,4 +1,4 @@
-inputs = File.read('input-25.txt').split("\n\n").map { |e| e.split("\n") }
+inputs = File.read("input-25.txt").split("\n\n").map { |e| e.split("\n") }
 keys = []
 locks = []
 
@@ -16,7 +16,7 @@ def grid_to_int(grid)
 end
 
 inputs.each do |input|
-  if input.first[0] == '.'
+  if input.first[0] == "."
     keys << grid_to_int(input)
   else
     locks << grid_to_int(input)

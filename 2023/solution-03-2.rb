@@ -1,7 +1,7 @@
-require 'English'
+require "English"
 
 valid_numbers = []
-lines = File.read('input-03.txt').split("\n")
+lines = File.read("input-03.txt").split("\n")
 
 lines.each_with_index do |line, i|
   next if i == 0 || i == lines.size - 1

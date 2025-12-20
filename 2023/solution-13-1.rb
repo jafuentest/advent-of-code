@@ -16,7 +16,7 @@ def find_symmetry_point(arr)
 end
 
 t = 0
-File.read('input-13.txt').split("\n\n").each do |input|
+File.read("input-13.txt").split("\n\n").each do |input|
   rows = input.split("\n")
   cols = rows.first.size.times.map do |i|
     rows.map { |row| row[i] }.join

@@ -1,7 +1,7 @@
-lines = File.read('input-17.txt').lines
+lines = File.read("input-17.txt").lines
 
-registers = lines[0, 3].map { |line| line.split(': ')[1].to_i }
-program = lines[4].split(': ')[1].split(',').map(&:to_i)
+registers = lines[0, 3].map { |line| line.split(": ")[1].to_i }
+program = lines[4].split(": ")[1].split(",").map(&:to_i)
 
 def operand(code, registers)
   return code if code < 4
@@ -42,4 +42,4 @@ until i > program.length - 2
   i += 2
 end
 
-puts out.join(',')
+puts out.join(",")

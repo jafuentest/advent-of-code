@@ -18,8 +18,8 @@ def valid?(operands, target, i = 1, total = operands.first, operation = :*)
 end
 
 total = 0
-File.foreach('input-07.txt') do |line|
-  target_str, operands_str = line.split(': ')
+File.foreach("input-07.txt") do |line|
+  target_str, operands_str = line.split(": ")
   target = target_str.to_i
 
   total += target if valid?(operands_str.split.map(&:to_i), target)

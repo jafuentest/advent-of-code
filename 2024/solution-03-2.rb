@@ -4,13 +4,13 @@ regex = /
   (don't\(\))
 /x
 
-instructions = File.read('input-03.txt')
+instructions = File.read("input-03.txt")
   .scan(regex)
   .map do |mul_x, mul_y, do_match, dont_match|
     if mul_x && mul_y
-      { type: 'mul', n: mul_x.to_i * mul_y.to_i }
+      { type: "mul", n: mul_x.to_i * mul_y.to_i }
     elsif do_match
-      { type: 'do' }
+      { type: "do" }
     elsif dont_match
       { type: "don't" }
     end
@@ -20,8 +20,8 @@ flag = true
 total = 0
 
 instructions.each do |instruction|
-  total += instruction[:n] if flag && instruction[:type] == 'mul'
-  flag = true if instruction[:type] == 'do'
+  total += instruction[:n] if flag && instruction[:type] == "mul"
+  flag = true if instruction[:type] == "do"
   flag = false if instruction[:type] == "don't"
 end
 

@@ -1,4 +1,4 @@
-grid = File.read('input-11.txt')
+grid = File.read("input-11.txt")
   .split("\n")
   .map(&:chars)
 
@@ -7,7 +7,7 @@ starred_rows = Set.new
 starred_cols = Set.new
 grid.each_with_index do |row, i|
   row.each_with_index do |cell, j|
-    if cell == '#'
+    if cell == "#"
       starred_rows.add(i)
       starred_cols.add(j)
       stars << [i, j]

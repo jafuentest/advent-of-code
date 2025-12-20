@@ -3,7 +3,7 @@ def integer?(number)
   (number - number.round).abs < TOLERANCE
 end
 
-games = File.read('input-13.txt').split("\n\n")
+games = File.read("input-13.txt").split("\n\n")
 
 costs = games.map do |game|
   btn_a, btn_b, target = game.split("\n")

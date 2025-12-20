@@ -3,7 +3,7 @@ def line_to_number(line)
   (numbers.first + numbers.last).to_i
 end
 
-puts File.read('input-01.txt')
+puts File.read("input-01.txt")
   .split("\n")
   .map { |e| line_to_number(e) }
   .reduce(0) { |total, e| total + e }

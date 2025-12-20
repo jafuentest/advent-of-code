@@ -1,23 +1,23 @@
-coordinates = File.read('input-18.txt')
+coordinates = File.read("input-18.txt")
   .split("\n")
-  .map { |e| e.split(',').map(&:to_i) }
+  .map { |e| e.split(",").map(&:to_i) }
 
 T = 71
 BYTES = 1024
-grid = Array.new(T) { ['.'] * T }
+grid = Array.new(T) { ["."] * T }
 
 coordinates.take(BYTES).each do |j, i|
-  grid[i][j] = '#'
+  grid[i][j] = "#"
 end
 
 M = grid.size
 N = grid[0].size
 DIRECTIONS = [[-1, 0], [0, 1], [1, 0], [0, -1]].freeze
 
-it = BYTES - 1
+iterations = BYTES - 1
 coordinates[BYTES..].each do |j, i|
-  grid[i][j] = '#'
-  it += 1
+  grid[i][j] = "#"
+  iterations += 1
 
   distances = Array.new(grid.size) { Array.new(grid.first.size) { nil } }
   distances[0][0] = 0
@@ -37,7 +37,7 @@ coordinates[BYTES..].each do |j, i|
       j1 = j + dj
       next if i1 < 0 || i1 >= M || j1 < 0 || j1 >= N
 
-      if grid[i1][j1] == '#'
+      if grid[i1][j1] == "#"
         distances[i1][j1] = -1
       else
         distances[i1][j1] ||= distances[i][j] + 1
@@ -49,4 +49,4 @@ coordinates[BYTES..].each do |j, i|
   break if distances[T - 1][T - 1].nil?
 end
 
-puts coordinates[it].join(',')
+puts coordinates[iterations].join(",")

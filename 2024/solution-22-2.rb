@@ -12,12 +12,12 @@ def changes(s)
 end
 
 bananas = Hash.new(0)
-File.foreach('input-22.txt') do |line|
+File.foreach("input-22.txt") do |line|
   steps = changes(line.to_i)
   delta = steps.each_cons(2).map { |x, y| (y % 10) - (x % 10) }
 
   seen = Set.new
-  (0..delta.size - 4).each do |i|
+  (0..(delta.size - 4)).each do |i|
     cur = delta[i, 4]
     next if seen.include?(cur)
 

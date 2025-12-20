@@ -1,7 +1,7 @@
 rows = 103
 cols = 101
 
-lines = File.read('input-14.txt').split("\n").map do |line|
+lines = File.read("input-14.txt").split("\n").map do |line|
   match = line.match(/p=(-?\d+),(-?\d+) v=(-?\d+),(-?\d+)/)
   pj, pi, vj, vi = match[1..].map(&:to_i)
   vi = rows + vi if vi < 0
@@ -39,8 +39,8 @@ lines.each do |pj, pi, vj, vi|
   i = (pi + (vi * secs)) % rows
   j = (pj + (vj * secs)) % cols
 
-  grid[i][j] = '#'
+  grid[i][j] = "#"
 end
 
-puts grid.map { |e| e.join.gsub('0', '.') }.join("\n")
+puts grid.map { |e| e.join.gsub("0", ".") }.join("\n")
 puts "\nNumber of seconds to form a tree: #{secs}"

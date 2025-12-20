@@ -16,15 +16,12 @@ def patterns(buttons)
 
       parity_pattern = pattern.map { |i| i % 2 }
 
-      unless out[parity_pattern].key?(pattern)
-        out[parity_pattern][pattern] = presses
-      end
+      out[parity_pattern][pattern] = presses unless out[parity_pattern].key?(pattern)
     end
   end
 
   out
 end
-
 
 def presses_for(buttons, target_joltage)
   pattern_costs = patterns(buttons)
@@ -53,7 +50,7 @@ def presses_for(buttons, target_joltage)
 
       answer = [
         answer,
-        presses + 2 * solve_single_aux.call(new_goal)
+        presses + (2 * solve_single_aux.call(new_goal))
       ].min
     end
 
@@ -64,9 +61,9 @@ def presses_for(buttons, target_joltage)
 end
 
 total = File.read("input-10.txt").split("\n").reduce(0) do |acc, line|
-  ln = line.split(' ')
+  ln = line.split
 
-  target_joltage = ln.last[1..-2].split(',').map(&:to_i)
+  target_joltage = ln.last[1..-2].split(",").map(&:to_i)
 
   buttons = ln[1..-2].map do |btn_str|
     btn_i = btn_str[1..-2].split(",").map(&:to_i)

@@ -1,37 +1,37 @@
-input = File.read('input-15.txt').split("\n\n")
+input = File.read("input-15.txt").split("\n\n")
 $grid = []
 input[0].split("\n").each do |row|
   grid_row = []
   row.chars.each do |char|
     case char
-    when '.'
-      grid_row << '.'
-      grid_row << '.'
-    when 'O'
-      grid_row << '['
-      grid_row << ']'
-    when '#'
-      grid_row << '#'
-      grid_row << '#'
+    when "."
+      grid_row << "."
+      grid_row << "."
+    when "O"
+      grid_row << "["
+      grid_row << "]"
+    when "#"
+      grid_row << "#"
+      grid_row << "#"
     else
-      grid_row << '@'
-      grid_row << '.'
+      grid_row << "@"
+      grid_row << "."
     end
   end
   $grid << grid_row
 end
 
 DIRECTIONS = {
-  '>' => [0, 1],
-  'v' => [1, 0],
-  '<' => [0, -1],
-  '^' => [-1, 0]
+  ">" => [0, 1],
+  "v" => [1, 0],
+  "<" => [0, -1],
+  "^" => [-1, 0]
 }.freeze
 
-pos = [$grid.find_index { |e| e.include? '@' }]
-pos << $grid[pos[0]].find_index { |e| e.include? '@' }
+pos = [$grid.find_index { |e| e.include? "@" }]
+pos << $grid[pos[0]].find_index { |e| e.include? "@" }
 i, j = pos
-$grid[i][j] = '.'
+$grid[i][j] = "."
 
 def pushed_boxes?(i, j, vi, vj)
   queue = [[i, j]]
@@ -47,13 +47,13 @@ def pushed_boxes?(i, j, vi, vj)
     nj = j + vj
 
     case $grid[ni][nj]
-    when '#'
+    when "#"
       pushed_boxes = false
       break
-    when '['
+    when "["
       queue << [ni, nj]
       queue << [ni, nj + 1]
-    when ']'
+    when "]"
       queue << [ni, nj]
       queue << [ni, nj - 1]
     end
@@ -68,7 +68,7 @@ def pushed_boxes?(i, j, vi, vj)
       next if seen.include? [i2, j2]
 
       $grid[i2][j2] = $grid[i1][j1]
-      $grid[i1][j1] = '.'
+      $grid[i1][j1] = "."
       seen.delete [i1, j1]
     end
   end
@@ -82,9 +82,9 @@ input[1].split("\n").each do |moves_line|
     ni = i + vi
     nj = j + vj
 
-    next if $grid[ni][nj] == '#'
+    next if $grid[ni][nj] == "#"
 
-    if $grid[ni][nj] == '.'
+    if $grid[ni][nj] == "."
       i = ni
       j = nj
       next
@@ -100,7 +100,7 @@ end
 total = 0
 $grid.each_with_index do |row, ii|
   row.each_with_index do |cell, jj|
-    total += (ii * 100) + jj if cell == '['
+    total += (ii * 100) + jj if cell == "["
   end
 end
 

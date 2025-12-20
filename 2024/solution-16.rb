@@ -1,6 +1,6 @@
-require 'algorithms'
+require "algorithms"
 
-grid = File.read('input-16.txt')
+grid = File.read("input-16.txt")
   .split("\n")
   .map(&:chars)
 
@@ -8,16 +8,16 @@ m = grid.size
 n = grid[0].size
 DIRECTIONS = [[-1, 0], [0, 1], [1, 0], [0, -1]].freeze
 
-i0 = j0 = it = jt = nil
+i0 = j0 = i_t = j_t = nil
 
 grid.each_with_index do |row, i|
   row.each_with_index do |cell, j|
-    if cell == 'S'
+    if cell == "S"
       i0 = i
       j0 = j
-    elsif cell == 'E'
-      it = i
-      jt = j
+    elsif cell == "E"
+      i_t = i
+      j_t = j
     end
   end
 end
@@ -34,7 +34,7 @@ until p_queue.empty?
 
   distances[[i, j, dir]] = d unless distances.key?([i, j, dir])
 
-  best = d if i == it && j == jt && best.nil?
+  best = d if i == i_t && j == j_t && best.nil?
 
   next if seen.include?([i, j, dir])
 
@@ -43,12 +43,12 @@ until p_queue.empty?
   i1 = i + di
   j1 = j + dj
 
-  if i1 >= 0 && i1 < m && j1 >= 0 && j1 < n && grid[i1][j1] != '#'
-    p_queue.push([d + 1, i1, j1, dir], (-1 - d))
+  if i1 >= 0 && i1 < m && j1 >= 0 && j1 < n && grid[i1][j1] != "#"
+    p_queue.push([d + 1, i1, j1, dir], -1 - d)
   end
 
-  p_queue.push([d + 1000, i, j, (dir + 1) % 4], (-1000 - d))
-  p_queue.push([d + 1000, i, j, (dir + 3) % 4], (-1000 - d))
+  p_queue.push([d + 1000, i, j, (dir + 1) % 4], -1000 - d)
+  p_queue.push([d + 1000, i, j, (dir + 3) % 4], -1000 - d)
 end
 
 puts best
@@ -56,7 +56,7 @@ puts best
 p_queue = Containers::PriorityQueue.new
 seen = Set.new
 
-4.times { |dir1| p_queue.push([0, it, jt, dir1], 0) }
+4.times { |dir1| p_queue.push([0, i_t, j_t, dir1], 0) }
 distances2 = {}
 
 until p_queue.empty?
@@ -72,12 +72,12 @@ until p_queue.empty?
   i1 = i + di
   j1 = j + dj
 
-  if i1 >= 0 && i1 < m && j1 >= 0 && j1 < n && grid[i1][j1] != '#'
-    p_queue.push([d + 1, i1, j1, dir], (-1 - d))
+  if i1 >= 0 && i1 < m && j1 >= 0 && j1 < n && grid[i1][j1] != "#"
+    p_queue.push([d + 1, i1, j1, dir], -1 - d)
   end
 
-  p_queue.push([d + 1000, i, j, (dir + 1) % 4], (-1000 - d))
-  p_queue.push([d + 1000, i, j, (dir + 3) % 4], (-1000 - d))
+  p_queue.push([d + 1000, i, j, (dir + 1) % 4], -1000 - d)
+  p_queue.push([d + 1000, i, j, (dir + 3) % 4], -1000 - d)
 end
 
 walked = Set.new

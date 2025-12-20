@@ -1,4 +1,4 @@
-list = File.read('input-11.txt').split.map(&:to_i)
+list = File.read("input-11.txt").split.map(&:to_i)
 $cache = Hash.new { |h, k| h[k] = [] }
 
 def split(digits)

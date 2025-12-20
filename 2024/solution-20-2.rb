@@ -1,4 +1,4 @@
-grid = File.read('input-20.txt').split("\n").map(&:chars)
+grid = File.read("input-20.txt").split("\n").map(&:chars)
 
 MIN_SAVE = 100
 CHEAT_TIME = 20
@@ -30,7 +30,7 @@ def dijkstra(grid, s)
       j1 = j + dj
       next if i1 < 1 || i1 >= M || j1 < 1 || j1 >= N
 
-      if grid[i1][j1] == '#'
+      if grid[i1][j1] == "#"
         distances[i1][j1] = -1
       else
         distances[i1][j1] ||= distances[i][j] + 1
@@ -48,7 +48,7 @@ grid.each_with_index do |row, i|
   break unless start.nil?
 
   row.each_with_index do |cell, j|
-    if cell == 'S'
+    if cell == "S"
       start = [i, j]
       break
     end

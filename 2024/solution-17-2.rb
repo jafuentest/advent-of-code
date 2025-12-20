@@ -1,7 +1,7 @@
-lines = File.read('input-17.txt').lines
+lines = File.read("input-17.txt").lines
 
-registers = lines[0, 3].map { |line| line.split(': ')[1].to_i }
-PROGRAM = lines[4].split(': ')[1].split(',').map(&:to_i).freeze
+registers = lines[0, 3].map { |line| line.split(": ")[1].to_i }
+PROGRAM = lines[4].split(": ")[1].split(",").map(&:to_i).freeze
 
 def operand(code, registers)
   return code if code < 4

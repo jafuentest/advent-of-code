@@ -1,4 +1,4 @@
-data = File.read('input-09.txt').chars[..-2].map(&:to_i)
+data = File.read("input-09.txt").chars[..-2].map(&:to_i)
 
 def map_drive(data)
   id = drive_idx = 0

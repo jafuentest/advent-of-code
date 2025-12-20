@@ -10,7 +10,7 @@ def will_loop?(grid, i, j)
     j += directions[dir][1]
 
     return false if i < 0 || j < 0 || i >= grid.size || j >= grid.size
-    next unless grid[i][j] == '#'
+    next unless grid[i][j] == "#"
 
     i -= directions[dir][0]
     j -= directions[dir][1]
@@ -20,17 +20,17 @@ end
 
 i = j = nil
 
-grid = File.read('input-06.txt')
+grid = File.read("input-06.txt")
   .split("\n")
   .map(&:chars)
 
 grid.each_with_index do |row, row_index|
-  col_index = row.index('^')
+  col_index = row.index("^")
   next unless col_index
 
   i = row_index
   j = col_index
-  grid[i][j] = '.'
+  grid[i][j] = "."
   break
 end
 
@@ -43,7 +43,7 @@ visited = Set.new
 loop do
   unless visited.include? [i, j]
     temp_grid = grid.map(&:dup)
-    temp_grid[i][j] = '#'
+    temp_grid[i][j] = "#"
     count += 1 if will_loop?(temp_grid, i0, j0)
   end
 
@@ -54,7 +54,7 @@ loop do
   j += directions[dir][1]
 
   break if i < 0 || j < 0 || i >= grid.size || j >= grid.size
-  next unless grid[i][j] == '#'
+  next unless grid[i][j] == "#"
 
   i -= directions[dir][0]
   j -= directions[dir][1]

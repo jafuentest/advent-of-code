@@ -34,7 +34,12 @@ def point_in_polygon?(p_x, p_y, poly)
   inside
 end
 
-def segments_cross?(x1, y1, x2, y2, x3, y3, x4, y4)
+def segments_cross?(p1, p2, p3, p4)
+  x1, y1 = p1
+  x2, y2 = p2
+  x3, y3 = p3
+  x4, y4 = p4
+
   # first segment horizontal, second vertical
   if y1 == y2 && x3 == x4
     return x3 > [x1, x2].min && x3 < [x1, x2].max && y1 > [y3, y4].min && y1 < [y3, y4].max
@@ -59,9 +64,9 @@ def square_inside_polygon?(a, c, polygon, poly_edges)
     [rect[3], rect[0]]
   ]
 
-  rect_edges.each do |(sx1, sy1), (sx2, sy2)|
-    poly_edges.each do |(px1, py1), (px2, py2)|
-      return false if segments_cross?(sx1, sy1, sx2, sy2, px1, py1, px2, py2)
+  rect_edges.each do |s1, s2|
+    poly_edges.each do |p1, p2|
+      return false if segments_cross?(s1, s2, p1, p2)
     end
   end
 

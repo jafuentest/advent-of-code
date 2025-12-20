@@ -19,14 +19,14 @@ end
 
 data = {}
 current_key = nil
-File.foreach('input-05.txt') do |line|
+File.foreach("input-05.txt") do |line|
   next if line == "\n"
 
-  if line.start_with?('seeds')
+  if line.start_with?("seeds")
     current_key = :seeds
-    data[current_key] = line.split(': ').last.split.map(&:to_i)
-  elsif line.include?(':')
-    current_key = line.split.first.gsub('-', '_').to_sym
+    data[current_key] = line.split(": ").last.split.map(&:to_i)
+  elsif line.include?(":")
+    current_key = line.split.first.gsub("-", "_").to_sym
     data[current_key] = RangeMapping.new
   else
     data[current_key].add_range(*line.split.map(&:to_i))

@@ -1,12 +1,12 @@
 STEPS = [[-1, 0], [0, -1], [0, 1], [1, 0]].freeze
 
-grid = File.read('input-10.txt')
+grid = File.read("input-10.txt")
   .split("\n")
   .map(&:chars)
 
 def find_s(grid)
   grid.each_with_index do |row, i|
-    row.each_with_index { |char, j| return [i, j] if char == 'S' }
+    row.each_with_index { |char, j| return [i, j] if char == "S" }
   end
 end
 
@@ -25,14 +25,14 @@ def replace_start(grid, i1, j1, i2, j2)
 
   if s1 == 0
     if s2 == 1
-      'J'
+      "J"
     else
-      s2 == 2 ? 'L' : '|'
+      s2 == 2 ? "L" : "|"
     end
   elsif s1 == 1
-    s2 == 2 ? '-' : '7'
+    s2 == 2 ? "-" : "7"
   else
-    'F'
+    "F"
   end
 end
 
@@ -43,7 +43,7 @@ def next_section?(grid, i1, j1, i2, j2)
   char2 = grid[i2][j2]
   d = [i2 - i1, j2 - j1]
 
-  return false if char2 == '.' || char2.is_a?(Integer)
+  return false if char2 == "." || char2.is_a?(Integer)
 
   (d == [0, 1]  && %w[- L F S].include?(char1) && %w[- J 7].include?(char2)) ||
   (d == [0, -1] && %w[- J 7 S].include?(char1) && %w[- L F].include?(char2)) ||
@@ -51,7 +51,7 @@ def next_section?(grid, i1, j1, i2, j2)
   (d == [-1, 0] && %w[| L J S].include?(char1) && %w[| 7 F].include?(char2))
 end
 
-new_grid = Array.new(grid.size) { Array.new(grid.first.size) { '.' } }
+new_grid = Array.new(grid.size) { Array.new(grid.first.size) { "." } }
 next1, next2 = find_starts(grid)
 
 i1, j1 = next1
@@ -87,17 +87,17 @@ new_grid.each do |row|
   row.each_with_index do |cell, j|
     next unless %w[. i].include?(cell)
 
-    ray = row[j + 1..]
+    ray = row[(j + 1)..]
 
-    pipes = ray.select { |e| e == '|' }.size
+    pipes = ray.select { |e| e == "|" }.size
     corners1 = ray.select { |e| %w[L 7].include?(e) }.size
     corners2 = ray.select { |e| %w[F J].include?(e) }.size
 
     if (pipes + (corners1 / 2) - (corners2 / 2)) % 2 > 0
       count += 1
-      row[j] = '.'
+      row[j] = "."
     else
-      row[j] = ' '
+      row[j] = " "
     end
   end
 end

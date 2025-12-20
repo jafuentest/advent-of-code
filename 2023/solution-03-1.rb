@@ -1,11 +1,11 @@
-require 'English'
+require "English"
 
 def symbol?(str)
   str.match?(/[^\d|.]/)
 end
 
 valid_numbers = []
-lines = File.read('input-03.txt').split("\n")
+lines = File.read("input-03.txt").split("\n")
 
 lines.each_with_index do |line, i|
   line.scan(/\d+/) do |number_match|

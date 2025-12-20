@@ -8,13 +8,13 @@ def presses_for(target, buttons)
 end
 
 total = File.read("input-10.txt").split("\n").reduce(0) do |acc, line|
-  ln = line.split(' ')
-  target_str = ln.first.chars[1..-2].map { |c| c == '#' ? 1 : 0 }.join
+  ln = line.split
+  target_str = ln.first.chars[1..-2].map { |c| c == "#" ? 1 : 0 }.join
   target = target_str.to_i(2)
 
   buttons = ln[1..-2].map do |b|
-    btn_int = b[1..-2].split(',').reduce(0) do |str, c|
-      str + (2**(target_str.size-1-c.to_i))
+    b[1..-2].split(",").reduce(0) do |str, c|
+      str + (2**(target_str.size - 1 - c.to_i))
     end
   end
 

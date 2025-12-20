@@ -1,7 +1,7 @@
 PRUNE = 16_777_216 # 2^24
 
 total = 0
-File.foreach('input-22.txt') do |line|
+File.foreach("input-22.txt") do |line|
   s = line.to_i
   2000.times do
     s = ((s * 64) ^ s) % PRUNE
